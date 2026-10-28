@@ -74,7 +74,7 @@ jobs:
           JOB_STATUS: ${{ job.status }}
         run: |
           {
-            echo "ShopEase CI Pipeline"
+            echo "## ShopEase CI Pipeline"
             echo ""
             echo "| Property | Value |"
             echo "|---|---|"
