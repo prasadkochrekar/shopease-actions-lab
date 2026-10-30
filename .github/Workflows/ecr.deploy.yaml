@@ -1,5 +1,4 @@
 name: ShopEase CI/CD - Container Release Pipeline
-
 on:
   push:
     branches:
@@ -48,6 +47,8 @@ jobs:
       - name: Login to Amazon ECR
         id: ecr-login
         uses: aws-actions/amazon-ecr-login@v2
+        with:
+          registry-type: public
 
       - name: Build and Push Docker Image
         env:
@@ -55,5 +56,5 @@ jobs:
           REPOSITORY: ${{ vars.ECR_REPOSITORY }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t REGISTRY/REPOSITORY:$IMAGE_TAG .
-          docker push REGISTRY/REPOSITORY:$IMAGE_TAG
+          docker build -t "$REGISTRY/$REPOSITORY:$IMAGE_TAG" .
+          docker push "$REGISTRY/$REPOSITORY:$IMAGE_TAG"
